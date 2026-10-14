@@ -49,5 +49,21 @@ namespace AnimalManagementSystem
             string FormatedLine = Environment.NewLine + string.Join("|", newRecord) + Environment.NewLine;
             File.AppendAllText(filepath, FormatedLine);
         }
+
+        public void UpdateData()
+        {
+            string[] selectedRecord = { this.ID, this.Name, this.species, this.Age.ToString(), this.Score.ToString(), this.status, this.housingunit };
+            string[] lines = File.ReadAllLines(filepath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] parts = lines[i].Split("|");
+                if (parts[0] == this.ID)
+                {
+                    lines[i] = string.Join("|", selectedRecord);
+                    File.WriteAllLines(filepath, lines);
+                    return;
+                }
+            }
+        }
     }
 }
