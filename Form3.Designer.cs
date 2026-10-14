@@ -197,7 +197,9 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Form3";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form3";
+            Load += Form3_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

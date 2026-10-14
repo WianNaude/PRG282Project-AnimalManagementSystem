@@ -31,6 +31,7 @@
             button1 = new Button();
             label1 = new Label();
             button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -65,15 +66,28 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button3.Location = new Point(300, 228);
+            button3.Name = "button3";
+            button3.Size = new Size(180, 37);
+            button3.TabIndex = 3;
+            button3.Text = "Exit ";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button1);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
@@ -84,5 +98,6 @@
         private Button button1;
         private Label label1;
         private Button button2;
+        private Button button3;
     }
 }
