@@ -47,6 +47,7 @@
             btnDelete = new Button();
             btnSummary = new Button();
             btnSearch = new Button();
+            lblMode = new Label();
             ((System.ComponentModel.ISupportInitialize)DGVanimals).BeginInit();
             SuspendLayout();
             // 
@@ -214,11 +215,22 @@
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
+            // lblMode
+            // 
+            lblMode.AutoSize = true;
+            lblMode.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMode.Location = new Point(244, 65);
+            lblMode.Name = "lblMode";
+            lblMode.Size = new Size(49, 20);
+            lblMode.TabIndex = 24;
+            lblMode.Text = "Mode";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 387);
+            Controls.Add(lblMode);
             Controls.Add(btnSearch);
             Controls.Add(btnSummary);
             Controls.Add(btnDelete);
@@ -268,5 +280,6 @@
         private Button btnDelete;
         private Button btnSummary;
         private Button btnSearch;
+        private Label lblMode;
     }
 }

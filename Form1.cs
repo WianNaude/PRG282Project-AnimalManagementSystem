@@ -9,6 +9,11 @@ namespace AnimalManagementSystem
         Feature_3 f3 = new Feature_3();
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnSave.Enabled = false;
+            DGVanimals.ReadOnly = true;
+            lblMode.Text = "Add Mode";
+            lblMode.ForeColor = Color.Red;
+
             Animals a = new Animals();
             a.AnimalID = txtID.Text;
             a.Name = txtName.Text;
@@ -54,11 +59,38 @@ namespace AnimalManagementSystem
             }
             DGVanimals.DataSource = f3.SearchID(txtSearch.Text);
 
+            if (DGVanimals.Rows.Count == 0)
+            {
+                MessageBox.Show("No records found for the given ID");
+            }
+            else
+            {
+                txtID.ReadOnly = true;
+                btnAdd.Enabled = false;
+                btnSave.Enabled = true;
+                lblMode.Text = "Edit Mode";
+                lblMode.ForeColor = Color.Green;
+
+                //Populates the textboxes with the data from the first row of the DataGridView
+                txtID.Text = DGVanimals.Rows[0].Cells[0].Value.ToString();
+                txtName.Text = DGVanimals.Rows[0].Cells[1].Value.ToString();
+                txtSpecies.Text = DGVanimals.Rows[0].Cells[2].Value.ToString();
+                txtAge.Text = DGVanimals.Rows[0].Cells[3].Value.ToString();
+                txtScore.Text = DGVanimals.Rows[0].Cells[4].Value.ToString();
+            }
+
 
         }
 
         private void DGVanimals_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Enters Edit Mode when a row is clicked
+            txtID.ReadOnly = true;
+            btnAdd.Enabled = false;
+            btnSave.Enabled = true;
+            lblMode.Text = "Edit Mode";
+            lblMode.ForeColor = Color.Green;
+
             int Indexrow = e.RowIndex;
             if (Indexrow == -1)
             {
@@ -70,7 +102,8 @@ namespace AnimalManagementSystem
             txtID.Text = selectedRow.Cells[0].Value.ToString();
             txtName.Text = selectedRow.Cells[1].Value.ToString();
             txtSpecies.Text = selectedRow.Cells[2].Value.ToString();
-            txtScore.Text = selectedRow.Cells[3].Value.ToString();
+            txtAge.Text = selectedRow.Cells[3].Value.ToString();
+            txtScore.Text = selectedRow.Cells[4].Value.ToString();
 
         }
 
@@ -103,6 +136,10 @@ namespace AnimalManagementSystem
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            btnSave.Enabled = false;
+            lblMode.Text = "Add Mode";
+            lblMode.ForeColor = Color.Red;
+
             txtID.Text = "";
             txtName.Text = "";
             txtSpecies.Text = "";
