@@ -76,6 +76,12 @@ namespace AnimalManagementSystem
 
             Write.WriteToFile(txtID.Text.ToUpper(), txtName.Text, txtSpecies.Text, int.Parse(txtAge.Text), int.Parse(txtScore.Text));
 
+            txtID.Clear();
+            txtName.Clear();
+            txtSpecies.Clear();
+            txtAge.Clear();
+            txtScore.Clear();
+
             List<Animal> animals = Read.ReadFromFile();
             DGVanimals.DataSource = animals;
         }
