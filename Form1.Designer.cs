@@ -48,6 +48,7 @@
             btnSummary = new Button();
             btnSearch = new Button();
             lblMode = new Label();
+            lblsummary = new Label();
             ((System.ComponentModel.ISupportInitialize)DGVanimals).BeginInit();
             SuspendLayout();
             // 
@@ -226,11 +227,21 @@
             lblMode.TabIndex = 24;
             lblMode.Text = "Mode";
             // 
+            // lblsummary
+            // 
+            lblsummary.AutoSize = true;
+            lblsummary.Location = new Point(244, 336);
+            lblsummary.Name = "lblsummary";
+            lblsummary.Size = new Size(159, 15);
+            lblsummary.TabIndex = 25;
+            lblsummary.Text = "Summary wll be Display here";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 387);
+            ClientSize = new Size(700, 516);
+            Controls.Add(lblsummary);
             Controls.Add(lblMode);
             Controls.Add(btnSearch);
             Controls.Add(btnSummary);
@@ -282,5 +293,6 @@
         private Button btnSummary;
         private Button btnSearch;
         private Label lblMode;
+        private Label lblsummary;
     }
 }

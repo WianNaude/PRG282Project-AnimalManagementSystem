@@ -12,7 +12,7 @@ namespace AnimalManagementSystem
 
         string filepath = "animals.txt";
 
-        public void GenerateSummary()
+        public string GenerateSummary()
         {
             string[] lines = File.ReadAllLines(filepath);
 
@@ -82,6 +82,7 @@ namespace AnimalManagementSystem
                              $"Release-Ready:               {realese}";
 
             File.WriteAllText("summary.txt", summary);
+            return summary;
         }
 
     }

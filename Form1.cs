@@ -20,8 +20,8 @@ namespace AnimalManagementSystem
             a.Species = txtSpecies.Text;
             a.Age = int.Parse(txtAge.Text);
             a.RecoveryScore = int.Parse(txtScore.Text);
-            //a.Status = txtStatus.Text;// Placeholder for housing unit calculation
-            //a.HousingUnit = "Calculated Method"; // Placeholder for housing unit calculation
+
+            a.Classification(a.RecoveryScore);// Calculates the status and Housing Unit based on the recovery score
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -36,8 +36,8 @@ namespace AnimalManagementSystem
             a.Species = txtSpecies.Text;
             a.Age = int.Parse(txtAge.Text);
             a.RecoveryScore = int.Parse(txtScore.Text);
-            //a.Status = txtStatus.Text;// Placeholder for housing unit calculation
-            //a.HousingUnit = "Calculated Method"; // Placeholder for housing unit calculation
+
+            a.Classification(a.RecoveryScore);
             try
             {
                 f3.UpdateData(a);
@@ -120,8 +120,8 @@ namespace AnimalManagementSystem
             a.Species = txtSpecies.Text;
             a.Age = int.Parse(txtAge.Text);
             a.RecoveryScore = int.Parse(txtScore.Text);
-            //a.Status = txtStatus.Text;// Placeholder for housing unit calculation
-            //a.HousingUnit = "Calculated Method"; // Placeholder for housing unit calculation
+
+            a.Classification(a.RecoveryScore);
             try
             {
                 f3.AddData(a);
@@ -153,7 +153,7 @@ namespace AnimalManagementSystem
             try
             {
                 Feature_5 f5 = new Feature_5();
-                f5.GenerateSummary();
+                lblsummary.Text = f5.GenerateSummary(); 
                 MessageBox.Show("Summary generated successfully.");
             }
             catch (Exception ex)
