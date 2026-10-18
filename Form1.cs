@@ -145,7 +145,21 @@ namespace AnimalManagementSystem
             txtSpecies.Text = "";
             txtAge.Text = "";
             txtScore.Text = "";
-            
+
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Feature_5 f5 = new Feature_5();
+                f5.GenerateSummary();
+                MessageBox.Show("Summary generated successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

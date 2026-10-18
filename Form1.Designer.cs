@@ -204,6 +204,7 @@
             btnSummary.TabIndex = 22;
             btnSummary.Text = "Summary";
             btnSummary.UseVisualStyleBackColor = true;
+            btnSummary.Click += btnSummary_Click;
             // 
             // btnSearch
             // 
