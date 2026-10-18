@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            DGVanimals = new DataGridView();
+            dgvAnimals = new DataGridView();
             txtID = new TextBox();
             txtName = new TextBox();
             txtSpecies = new TextBox();
@@ -51,7 +51,14 @@
             btnDelete = new Button();
             btnSummary = new Button();
             btnSearch = new Button();
-            ((System.ComponentModel.ISupportInitialize)DGVanimals).BeginInit();
+            colAnimalID = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colSpecies = new DataGridViewTextBoxColumn();
+            colAge = new DataGridViewTextBoxColumn();
+            colRecoveryScore = new DataGridViewTextBoxColumn();
+            colStatus = new DataGridViewTextBoxColumn();
+            colHousingUnit = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvAnimals).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -64,13 +71,22 @@
             label1.TabIndex = 1;
             label1.Text = "Baobab Ridge Wildlife Rehabilitation Records System ";
             // 
-            // DGVanimals
+            // dgvAnimals
             // 
-            DGVanimals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVanimals.Location = new Point(244, 91);
-            DGVanimals.Name = "DGVanimals";
-            DGVanimals.Size = new Size(430, 195);
-            DGVanimals.TabIndex = 2;
+            dgvAnimals.AllowUserToAddRows = false;
+            dgvAnimals.AllowUserToDeleteRows = false;
+            dgvAnimals.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvAnimals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAnimals.Columns.AddRange(new DataGridViewColumn[] { colAnimalID, colName, colSpecies, colAge, colRecoveryScore, colStatus, colHousingUnit });
+            dgvAnimals.Location = new Point(244, 91);
+            dgvAnimals.MultiSelect = false;
+            dgvAnimals.Name = "dgvAnimals";
+            dgvAnimals.ReadOnly = true;
+            dgvAnimals.RowHeadersVisible = false;
+            dgvAnimals.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAnimals.Size = new Size(430, 195);
+            dgvAnimals.TabIndex = 2;
+            dgvAnimals.CellContentClick += dgvAnimals_CellContentClick;
             // 
             // txtID
             // 
@@ -245,6 +261,55 @@
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
             // 
+            // colAnimalID
+            // 
+            colAnimalID.HeaderText = "Animal ID\n";
+            colAnimalID.Name = "colAnimalID";
+            colAnimalID.ReadOnly = true;
+            colAnimalID.DataPropertyName = "AnimalID";
+            // 
+            // colName
+            // 
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.DataPropertyName = "Name";
+            // 
+            // colSpecies
+            // 
+            colSpecies.HeaderText = "Species";
+            colSpecies.Name = "colSpecies";
+            colSpecies.ReadOnly = true;
+            colSpecies.DataPropertyName = "Species";
+            // 
+            // colAge
+            // 
+            colAge.HeaderText = "Age";
+            colAge.Name = "colAge";
+            colAge.ReadOnly = true;
+            colAge.DataPropertyName = "Age";
+            // 
+            // colRecoveryScore
+            // 
+            colRecoveryScore.HeaderText = "RecoveryScore";
+            colRecoveryScore.Name = "colRecoveryScore";
+            colRecoveryScore.ReadOnly = true;
+            colRecoveryScore.DataPropertyName = "RecoveryScore";
+            // 
+            // colStatus
+            // 
+            colStatus.HeaderText = "Status";
+            colStatus.Name = "colStatus";
+            colStatus.ReadOnly = true;
+            colStatus.DataPropertyName = "Status";
+            // 
+            // colHousingUnit
+            // 
+            colHousingUnit.HeaderText = "HousingUnit";
+            colHousingUnit.Name = "colHousingUnit";
+            colHousingUnit.ReadOnly = true;
+            colHousingUnit.DataPropertyName = "HousingUnit";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -271,20 +336,21 @@
             Controls.Add(txtSpecies);
             Controls.Add(txtName);
             Controls.Add(txtID);
-            Controls.Add(DGVanimals);
+            Controls.Add(dgvAnimals);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)DGVanimals).EndInit();
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvAnimals).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Label label1;
-        private DataGridView DGVanimals;
+        private DataGridView dgvAnimals;
         private TextBox txtID;
         private TextBox txtName;
         private TextBox txtSpecies;
@@ -306,5 +372,12 @@
         private Button btnDelete;
         private Button btnSummary;
         private Button btnSearch;
+        private DataGridViewTextBoxColumn colAnimalID;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colSpecies;
+        private DataGridViewTextBoxColumn colAge;
+        private DataGridViewTextBoxColumn colRecoveryScore;
+        private DataGridViewTextBoxColumn colStatus;
+        private DataGridViewTextBoxColumn colHousingUnit;
     }
 }
