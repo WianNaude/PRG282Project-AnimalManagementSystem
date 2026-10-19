@@ -182,6 +182,62 @@ namespace AnimalManagementSystem
                 MessageBox.Show(ex.Message);
             }
         }
+ private void btnDelete_Click(object sender, EventArgs e)
+ {
+     List<Animals> animallist = new List<Animals>();
+     // 1. Check if a row is selected in the grid
+     if (DGVanimals.SelectedRows.Count == 0 && DGVanimals.CurrentRow == null)
+     {
+         MessageBox.Show("Please select a row in the grid to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+         return;
+     }
+
+     // Get the selected row and its data-bound animal object
+     var selectedRow = DGVanimals.SelectedRows.Count > 0 ? DGVanimals.SelectedRows[0] : DGVanimals.CurrentRow;
+
+     if (selectedRow == null || selectedRow.DataBoundItem == null)
+     {
+         MessageBox.Show("Please select a valid animal row.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+         return;
+     }
+
+     Animals selectedAnimal = selectedRow.DataBoundItem as Animals;
+
+     if (selectedAnimal == null)
+     {
+         MessageBox.Show("Could not retrieve the selected animal data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         return;
+     }
+
+     // 2. Show Yes/No confirmation showing the animal's ID and name
+     string message = $"Delete {selectedAnimal.AnimalID} ({selectedAnimal.Name})? This cannot be undone.";
+     DialogResult result = MessageBox.Show(message, "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+     // Choosing No changes nothing
+     if (result == DialogResult.Yes)
+     {
+         // Remove from the active list
+         animallist.Remove(selectedAnimal);
+
+         // Save updated list back to animals.txt (adjust property separator if your group uses a different format)
+         var lines = animallist.Select(a => $"{a.AnimalID},{a.Name},{a.Age},{a.RecoveryScore},{a.Status}");
+         File.WriteAllLines("animals.txt", lines);
+
+         // Refresh the grid
+         DGVanimals.DataSource = null;
+         DGVanimals.DataSource = animallist;
+
+         // Clear form fields if the deleted animal was currently loaded
+         ClearFormFields();
+
+         MessageBox.Show("Record successfully deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+     }
+ }
+
+ private void ClearFormFields()
+ {
+     // Clear your input textboxes here if needed (e.g., txtId.Clear(); txtName.Clear();)
+ }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
