@@ -14,87 +14,152 @@ namespace AnimalManagementSystem
             lblMode.Text = "Add Mode";
             lblMode.ForeColor = Color.Red;
 
-        private void btnAdd_Click(object sender, EventArgs e)
+            Animals a = new Animals();
+            a.AnimalID = txtID.Text;
+            a.Name = txtName.Text;
+            a.Species = txtSpecies.Text;
+            a.Age = int.Parse(txtAge.Text);
+            a.RecoveryScore = int.Parse(txtScore.Text);
+
+            a.Classification(a.RecoveryScore);// Calculates the status and Housing Unit based on the recovery score
+        }
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            string AnimalID = txtID.Text.Trim().ToUpper();
-            string Name = txtName.Text.Trim();
-            string Species = txtSpecies.Text.Trim();
-            string Age = txtAge.Text.Trim();
-            string Score = txtScore.Text.Trim();
-
-            if (!System.Text.RegularExpressions.Regex.IsMatch(AnimalID, @"^WR-\d{4}$"))
+            if (txtName.Text == "" || txtSpecies.Text == "" || txtAge.Text == "" || txtScore.Text == "")
             {
-                MessageBox.Show("Animal ID must follow the format of WR-0000");
-                txtID.Focus();
-                txtID.SelectAll();
+                MessageBox.Show("Fill in all fields before saving changes");
                 return;
             }
-            List<Animal> currentAnimal = Read.ReadFromFile();
-            bool isDuplicate = false;
+            Animals a = new Animals();
+            a.AnimalID = txtID.Text;
+            a.Name = txtName.Text;
+            a.Species = txtSpecies.Text;
+            a.Age = int.Parse(txtAge.Text);
+            a.RecoveryScore = int.Parse(txtScore.Text);
 
-            foreach (Animal animal in currentAnimal)
+            a.Classification(a.RecoveryScore);
+            try
             {
-                if (animal.AnimalID.Equals(AnimalID, StringComparison.OrdinalIgnoreCase))
-                {
-                    isDuplicate = true;
-                    break;
-                }
+                f3.UpdateData(a);
+                MessageBox.Show("Saved Successfully");
+
             }
-            if (isDuplicate)
+            catch (Exception ex)
             {
-                MessageBox.Show("Animal ID already exists");
-                txtID.Focus();
-                txtID.SelectAll();
-                return;
+                MessageBox.Show(ex.Message);
             }
-
-            if (string.IsNullOrWhiteSpace(Name) || Name.Length > 30 || Name.Contains('|'))
-            {
-                MessageBox.Show("Name must contain atleast 1-30 characters");
-                txtName.Focus();
-                txtName.SelectAll();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(Species) || Species.Length > 30)
-            {
-                MessageBox.Show("Species must contain atleast 1-30 characters");
-                txtSpecies.Focus();
-                txtSpecies.SelectAll();
-                return;
-            }
-            if (!int.TryParse(Age, out int age) || age < 0 || age > 100)
-            {
-                MessageBox.Show("Age must be between 0 and 100");
-                txtAge.Focus();
-                txtAge.SelectAll();
-                return;
-            }
-
-            if (!int.TryParse(Score, out int score) || score < 0 || score > 100)
-            {
-                MessageBox.Show("Score must be between 0 and 100");
-                txtScore.Focus();
-                txtScore.SelectAll();
-                return;
-            }
-
-            Write.WriteToFile(txtID.Text.ToUpper(), txtName.Text, txtSpecies.Text, int.Parse(txtAge.Text), int.Parse(txtScore.Text));
-
-            txtID.Clear();
-            txtName.Clear();
-            txtSpecies.Clear();
-            txtAge.Clear();
-            txtScore.Clear();
-
-            List<Animal> animals = Read.ReadFromFile();
-            DGVanimals.DataSource = animals;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<Animal> animals = Read.ReadFromFile();
-            DGVanimals.DataSource = animals;
+            if (txtSearch.Text == "")
+            {
+                MessageBox.Show("Search bar is empty, Please enter ID");
+                return;
+            }
+            DGVanimals.DataSource = f3.SearchID(txtSearch.Text);
+
+            if (DGVanimals.Rows.Count == 0)
+            {
+                MessageBox.Show("No records found for the given ID");
+            }
+            else
+            {
+                txtID.ReadOnly = true;
+                btnAdd.Enabled = false;
+                btnSave.Enabled = true;
+                lblMode.Text = "Edit Mode";
+                lblMode.ForeColor = Color.Green;
+
+                //Populates the textboxes with the data from the first row of the DataGridView
+                txtID.Text = DGVanimals.Rows[0].Cells[0].Value.ToString();
+                txtName.Text = DGVanimals.Rows[0].Cells[1].Value.ToString();
+                txtSpecies.Text = DGVanimals.Rows[0].Cells[2].Value.ToString();
+                txtAge.Text = DGVanimals.Rows[0].Cells[3].Value.ToString();
+                txtScore.Text = DGVanimals.Rows[0].Cells[4].Value.ToString();
+            }
+
+
+        }
+
+        private void DGVanimals_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Enters Edit Mode when a row is clicked
+            txtID.ReadOnly = true;
+            btnAdd.Enabled = false;
+            btnSave.Enabled = true;
+            lblMode.Text = "Edit Mode";
+            lblMode.ForeColor = Color.Green;
+
+            int Indexrow = e.RowIndex;
+            if (Indexrow == -1)
+            {
+                return;
+            }
+
+            DataGridViewRow selectedRow = DGVanimals.Rows[Indexrow];
+
+            txtID.Text = selectedRow.Cells[0].Value.ToString();
+            txtName.Text = selectedRow.Cells[1].Value.ToString();
+            txtSpecies.Text = selectedRow.Cells[2].Value.ToString();
+            txtAge.Text = selectedRow.Cells[3].Value.ToString();
+            txtScore.Text = selectedRow.Cells[4].Value.ToString();
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (txtName.Text == "" || txtSpecies.Text == "" || txtAge.Text == "" || txtScore.Text == "")
+            {
+                MessageBox.Show("Fill in all fields before saving changes");
+                return;
+            }
+            Animals a = new Animals();
+            a.AnimalID = txtID.Text;
+            a.Name = txtName.Text;
+            a.Species = txtSpecies.Text;
+            a.Age = int.Parse(txtAge.Text);
+            a.RecoveryScore = int.Parse(txtScore.Text);
+
+            a.Classification(a.RecoveryScore);
+            try
+            {
+                f3.AddData(a);
+                MessageBox.Show("Saved Successfully");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            btnSave.Enabled = false;
+            lblMode.Text = "Add Mode";
+            lblMode.ForeColor = Color.Red;
+
+            txtID.Text = "";
+            txtName.Text = "";
+            txtSpecies.Text = "";
+            txtAge.Text = "";
+            txtScore.Text = "";
+
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Feature_5 f5 = new Feature_5();
+                lblsummary.Text = f5.GenerateSummary(); 
+                MessageBox.Show("Summary generated successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
