@@ -35,16 +35,12 @@
             txtSpecies = new TextBox();
             txtAge = new TextBox();
             txtScore = new TextBox();
-            txtStatus = new TextBox();
-            txtHousing = new TextBox();
             txtSearch = new TextBox();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
             btnAdd = new Button();
             btnSave = new Button();
             btnClear = new Button();
@@ -90,52 +86,38 @@
             // 
             // txtID
             // 
-            txtID.Location = new Point(12, 91);
+            txtID.Location = new Point(12, 110);
             txtID.Name = "txtID";
             txtID.Size = new Size(100, 23);
             txtID.TabIndex = 3;
             // 
             // txtName
             // 
-            txtName.Location = new Point(12, 135);
+            txtName.Location = new Point(12, 154);
             txtName.Name = "txtName";
             txtName.Size = new Size(100, 23);
             txtName.TabIndex = 4;
             // 
             // txtSpecies
             // 
-            txtSpecies.Location = new Point(128, 135);
+            txtSpecies.Location = new Point(128, 154);
             txtSpecies.Name = "txtSpecies";
             txtSpecies.Size = new Size(100, 23);
             txtSpecies.TabIndex = 5;
             // 
             // txtAge
             // 
-            txtAge.Location = new Point(12, 178);
+            txtAge.Location = new Point(12, 197);
             txtAge.Name = "txtAge";
             txtAge.Size = new Size(100, 23);
             txtAge.TabIndex = 6;
             // 
             // txtScore
             // 
-            txtScore.Location = new Point(128, 178);
+            txtScore.Location = new Point(128, 197);
             txtScore.Name = "txtScore";
             txtScore.Size = new Size(100, 23);
             txtScore.TabIndex = 7;
-            // 
-            // txtStatus
-            // 
-            txtStatus.Location = new Point(12, 222);
-            txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(216, 23);
-            txtStatus.TabIndex = 8;
-            // 
-            // txtHousing
-            // 
-            txtHousing.Location = new Point(12, 263);
-            txtHousing.Name = "txtHousing";
-            txtHousing.Size = new Size(216, 23);
-            txtHousing.TabIndex = 9;
             // 
             // txtSearch
             // 
@@ -147,7 +129,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 72);
+            label2.Location = new Point(12, 91);
             label2.Name = "label2";
             label2.Size = new Size(18, 15);
             label2.TabIndex = 11;
@@ -156,7 +138,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 117);
+            label3.Location = new Point(12, 136);
             label3.Name = "label3";
             label3.Size = new Size(39, 15);
             label3.TabIndex = 12;
@@ -165,7 +147,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(128, 117);
+            label4.Location = new Point(128, 136);
             label4.Name = "label4";
             label4.Size = new Size(46, 15);
             label4.TabIndex = 13;
@@ -174,7 +156,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 161);
+            label5.Location = new Point(12, 180);
             label5.Name = "label5";
             label5.Size = new Size(28, 15);
             label5.TabIndex = 14;
@@ -183,60 +165,45 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(128, 161);
+            label6.Location = new Point(128, 180);
             label6.Name = "label6";
             label6.Size = new Size(36, 15);
             label6.TabIndex = 15;
             label6.Text = "Score";
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(12, 204);
-            label7.Name = "label7";
-            label7.Size = new Size(39, 15);
-            label7.TabIndex = 16;
-            label7.Text = "Status";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(12, 248);
-            label8.Name = "label8";
-            label8.Size = new Size(77, 15);
-            label8.TabIndex = 17;
-            label8.Text = "Housing Unit";
-            // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(12, 292);
+            btnAdd.Location = new Point(12, 254);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(100, 32);
             btnAdd.TabIndex = 18;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(128, 292);
+            btnSave.Location = new Point(128, 254);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 32);
             btnSave.TabIndex = 19;
             btnSave.Text = "Save Changes";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(12, 330);
+            btnClear.Location = new Point(12, 292);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(100, 32);
             btnClear.TabIndex = 20;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(128, 330);
+            btnDelete.Location = new Point(128, 292);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(100, 32);
             btnDelete.TabIndex = 21;
@@ -251,6 +218,7 @@
             btnSummary.TabIndex = 22;
             btnSummary.Text = "Summary";
             btnSummary.UseVisualStyleBackColor = true;
+            btnSummary.Click += btnSummary_Click;
             // 
             // btnSearch
             // 
@@ -260,6 +228,26 @@
             btnSearch.TabIndex = 23;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // lblMode
+            // 
+            lblMode.AutoSize = true;
+            lblMode.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMode.Location = new Point(244, 65);
+            lblMode.Name = "lblMode";
+            lblMode.Size = new Size(49, 20);
+            lblMode.TabIndex = 24;
+            lblMode.Text = "Mode";
+            // 
+            // lblsummary
+            // 
+            lblsummary.AutoSize = true;
+            lblsummary.Location = new Point(244, 336);
+            lblsummary.Name = "lblsummary";
+            lblsummary.Size = new Size(159, 15);
+            lblsummary.TabIndex = 25;
+            lblsummary.Text = "Summary wll be Display here";
             // 
             // colAnimalID
             // 
@@ -314,23 +302,21 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 387);
+            ClientSize = new Size(700, 516);
+            Controls.Add(lblsummary);
+            Controls.Add(lblMode);
             Controls.Add(btnSearch);
             Controls.Add(btnSummary);
             Controls.Add(btnDelete);
             Controls.Add(btnClear);
             Controls.Add(btnSave);
             Controls.Add(btnAdd);
-            Controls.Add(label8);
-            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txtSearch);
-            Controls.Add(txtHousing);
-            Controls.Add(txtStatus);
             Controls.Add(txtScore);
             Controls.Add(txtAge);
             Controls.Add(txtSpecies);
@@ -356,16 +342,12 @@
         private TextBox txtSpecies;
         private TextBox txtAge;
         private TextBox txtScore;
-        private TextBox txtStatus;
-        private TextBox txtHousing;
         private TextBox txtSearch;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
-        private Label label7;
-        private Label label8;
         private Button btnAdd;
         private Button btnSave;
         private Button btnClear;
@@ -379,5 +361,7 @@
         private DataGridViewTextBoxColumn colRecoveryScore;
         private DataGridViewTextBoxColumn colStatus;
         private DataGridViewTextBoxColumn colHousingUnit;
+        private Label lblMode;
+        private Label lblsummary;
     }
 }
