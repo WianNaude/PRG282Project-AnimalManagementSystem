@@ -21,6 +21,21 @@
 
 ## Feature_2 View all animals
 
+The View All Animals feature displays valid animal records from animals.txt in a read-only DataGridView.
+The grid displays the following columns:
+•	Animal ID
+•	Name
+•	Species
+•	Age
+•	Recovery Score
+•	Status
+•	Housing Unit
+The application creates an empty animals.txt file if one does not exist. Malformed records are skipped without crashing the application, and the user is notified once about the number of skipped records.
+Users cannot add, edit, or delete records directly in the grid. Clicking a cell selects the entire animal row.
+Animal records use the following pipe-separated format:
+AnimalID|Name|Species|Age|RecoveryScore|Status|HousingUnit
+The shared RefreshAnimalGrid() method reloads the file and updates the grid without creating duplicate rows.
+
 ## Feature_3 Update an animal
 * Update Button overwrites the existing text with new text that contains the changes
 * Search button that checks for an exact match of the animal ID and displays the record in the text boxes for editing
