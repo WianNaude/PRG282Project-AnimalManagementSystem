@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="animals.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="animals.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PresentationLayer\" />
     <Compile Remove="BusinessLayer\**" />
     <Compile Remove="PresentationLayer\**" />
     <EmbeddedResource Remove="BusinessLayer\**" />
