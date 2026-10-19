@@ -1,5 +1,3 @@
-using AnimalManagementSystem.DataLayer;
-
 namespace AnimalManagementSystem
 {
     public partial class Form1 : Form

@@ -9,8 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLayer\" />
-    <Folder Include="PresentationLayer\" />
+    <Compile Remove="BusinessLayer\**" />
+    <Compile Remove="PresentationLayer\**" />
+    <EmbeddedResource Remove="BusinessLayer\**" />
+    <EmbeddedResource Remove="PresentationLayer\**" />
+    <None Remove="BusinessLayer\**" />
+    <None Remove="PresentationLayer\**" />
   </ItemGroup>
 
 </Project>
