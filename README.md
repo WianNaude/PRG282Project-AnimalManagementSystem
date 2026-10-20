@@ -19,6 +19,20 @@
 
 ## Feature_1 Add a new animal
 
+User Input: User populates input fields for Animal ID, Name, Species, Age, and Recovery Score.
+
+Text Normalization: Text entries undergo .Trim() processing to eliminate leading/trailing whitespace. Animal ID is automatically converted to uppercase.
+
+Validation Sequence: Input is checked sequentially. If any rule fails:
+
+An error message is displayed via MessageBox.
+
+The focus (.Focus()) and selection (.SelectAll()) are set to the invalid control.
+
+Execution stops (return), preventing file writes.
+
+Data Persistence: The record is formatted into a pipe-delimited string (ID|Name|Species|Age|Score|Status|HousingUnit) and appended to animals.txt using UTF-8 encoding.
+
 ## Feature_2 View all animals
 
 The View All Animals feature displays valid animal records from animals.txt in a read-only DataGridView.
