@@ -58,6 +58,14 @@ The shared RefreshAnimalGrid() method reloads the file and updates the grid with
   - The label will turn green if it is in Edit Mode
 
 ## Feature_4 Delete an animal	
+* Delete method checks if the specified animal record exists before attempting the operation:
+  - An 'invalid selection' error message is shown
+* If the record exists the method reads and parses animal records dynamically
+* Validates that an animal record is currently selected
+* The user is then prompted to confirm the deletion; if the user selects no nothing changes
+  - if the user selects yes the selected animal record is removed for the local list
+* After deletion updated records are rewritten to the list
+* The grid data source is then refreshed, the fields are cleared and success or error messages are provided
 
 ## Feature_5 Generate a summary report
 * Generate summary button that creates a text file with the following information:
