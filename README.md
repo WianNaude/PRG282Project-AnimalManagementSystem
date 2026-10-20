@@ -30,6 +30,7 @@ The grid displays the following columns:
 * Recovery Score
 * Status
 * Housing Unit
+
 The application creates an empty animals.txt file if one does not exist. Malformed records are skipped without crashing the application, and the user is notified once about the number of skipped records.
 Users cannot add, edit, or delete records directly in the grid. Clicking a cell selects the entire animal row.
 Animal records use the following pipe-separated format:

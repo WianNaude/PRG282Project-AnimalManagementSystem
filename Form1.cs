@@ -28,6 +28,15 @@ namespace AnimalManagementSystem
             DGVanimals.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DGVanimals.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            //Adjusting the Column sizes 
+            colAnimalID.FillWeight = 85;
+            colName.FillWeight = 100;
+            colSpecies.FillWeight = 100;
+            colAge.FillWeight = 40;           
+            colRecoveryScore.FillWeight = 95;  
+            colStatus.FillWeight = 95;
+            colHousingUnit.FillWeight = 160;
+
         }
 
         public void RefreshAnimalGrid()
@@ -120,6 +129,7 @@ namespace AnimalManagementSystem
                 txtSpecies.Text = DGVanimals.Rows[0].Cells[2].Value.ToString();
                 txtAge.Text = DGVanimals.Rows[0].Cells[3].Value.ToString();
                 txtScore.Text = DGVanimals.Rows[0].Cells[4].Value.ToString();
+                txtSearch.Clear();
             }
 
 
@@ -235,9 +245,42 @@ namespace AnimalManagementSystem
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
-             // 1. Check if a row is selected in the grid
-             if (DGVanimals.SelectedRows.Count == 0 && DGVanimals.CurrentRow == null)
+            //Checks if the Search method was executed
+            if(DGVanimals.Rows.Count == 1) 
+            {
+                if (txtID.Text == "")
+                {
+                    MessageBox.Show("Please enter ID to Delete");
+                    return;
+                }
+                Animal a = new Animal();
+                a.AnimalID = txtID.Text;
+                a.Name = txtName.Text;
+                a.Species = txtSpecies.Text;
+                a.Age = int.Parse(txtAge.Text);
+                a.RecoveryScore = int.Parse(txtScore.Text);
+
+                a.Classification(a.RecoveryScore);// Calculates the status and Housing Unit based on the recovery score
+
+                DialogResult result1 = MessageBox.Show($"Delete {a.AnimalID} ({a.Name})? This cannot be undone.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result1 == DialogResult.Yes) 
+                {
+                    try
+                    {
+                        f3.DeleteData(txtID.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                RefreshAnimalGrid();
+                ClearFormFields();
+                return;// it wont need to continue becuase it was successfully Delete
+            }/////////////////////////////
+
+                // 1. Check if a row is selected in the grid
+                if (DGVanimals.SelectedRows.Count == 0 && DGVanimals.CurrentRow == null)
              {
                  MessageBox.Show("Please select a row in the grid to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                  return;

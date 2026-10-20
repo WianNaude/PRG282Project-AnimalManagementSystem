@@ -71,5 +71,23 @@ namespace AnimalManagementSystem
             
             return result;// if the for looop does not find anything it will display an empty DataTable
         }
+        //Delete Method that will only execute if the Search Method executes
+        public void DeleteData(string ID)
+        {
+            string[] lines = File.ReadAllLines(filepath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] parts = lines[i].Split("|");
+                if (parts[0].ToUpper() == ID.ToUpper())
+                {
+                    List<string> result = lines.ToList();
+                    result.RemoveAt(i);
+                    File.WriteAllLines(filepath, result);
+                    MessageBox.Show("Deleted Successfully");
+                    break;
+                }
+            }
+        }
+
     }
 }
