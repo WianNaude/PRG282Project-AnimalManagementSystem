@@ -19,6 +19,20 @@
 
 ## Feature_1 Add a new animal
 
+User Input: User populates input fields for Animal ID, Name, Species, Age, and Recovery Score.
+
+Text Normalization: Text entries undergo .Trim() processing to eliminate leading/trailing whitespace. Animal ID is automatically converted to uppercase.
+
+Validation Sequence: Input is checked sequentially. If any rule fails:
+
+An error message is displayed via MessageBox.
+
+The focus (.Focus()) and selection (.SelectAll()) are set to the invalid control.
+
+Execution stops (return), preventing file writes.
+
+Data Persistence: The record is formatted into a pipe-delimited string (ID|Name|Species|Age|Score|Status|HousingUnit) and appended to animals.txt using UTF-8 encoding.
+
 ## Feature_2 View all animals
 
 The View All Animals feature displays valid animal records from animals.txt in a read-only DataGridView.
@@ -45,6 +59,14 @@ The shared RefreshAnimalGrid() method reloads the file and updates the grid with
   - The label will turn green if it is in Edit Mode
 
 ## Feature_4 Delete an animal	
+* Delete method checks if the specified animal record exists before attempting the operation:
+  - An 'invalid selection' error message is shown
+* If the record exists the method reads and parses animal records dynamically
+* Validates that an animal record is currently selected
+* The user is then prompted to confirm the deletion; if the user selects no nothing changes
+  - if the user selects yes the selected animal record is removed for the local list
+* After deletion updated records are rewritten to the list
+* The grid data source is then refreshed, the fields are cleared and success or error messages are provided
 
 ## Feature_5 Generate a summary report
 * Generate summary button that creates a text file with the following information:
