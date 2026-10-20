@@ -298,7 +298,7 @@
             lblsummary.AutoSize = true;
             lblsummary.Location = new Point(12, 334);
             lblsummary.Name = "lblsummary";
-            lblsummary.Size = new Size(279, 210);
+            lblsummary.Size = new Size(282, 210);
             lblsummary.TabIndex = 25;
             lblsummary.Text = resources.GetString("lblsummary.Text");
             // 

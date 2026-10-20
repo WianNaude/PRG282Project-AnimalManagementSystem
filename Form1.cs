@@ -32,8 +32,8 @@ namespace AnimalManagementSystem
             colAnimalID.FillWeight = 85;
             colName.FillWeight = 100;
             colSpecies.FillWeight = 100;
-            colAge.FillWeight = 40;           
-            colRecoveryScore.FillWeight = 95;  
+            colAge.FillWeight = 40;
+            colRecoveryScore.FillWeight = 95;
             colStatus.FillWeight = 95;
             colHousingUnit.FillWeight = 160;
 
@@ -175,7 +175,7 @@ namespace AnimalManagementSystem
                 txtID.SelectAll();
                 return;
             }
-            
+
             bool isDuplicate = false;
 
             foreach (Animal animal in animals)
@@ -246,7 +246,7 @@ namespace AnimalManagementSystem
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //Checks if the Search method was executed
-            if(DGVanimals.Rows.Count == 1) 
+            if (DGVanimals.Rows.Count == 1)
             {
                 if (txtID.Text == "")
                 {
@@ -263,7 +263,7 @@ namespace AnimalManagementSystem
                 a.Classification(a.RecoveryScore);// Calculates the status and Housing Unit based on the recovery score
 
                 DialogResult result1 = MessageBox.Show($"Delete {a.AnimalID} ({a.Name})? This cannot be undone.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result1 == DialogResult.Yes) 
+                if (result1 == DialogResult.Yes)
                 {
                     try
                     {
@@ -279,43 +279,43 @@ namespace AnimalManagementSystem
                 return;// it wont need to continue becuase it was successfully Delete
             }/////////////////////////////
 
-                // 1. Check if a row is selected in the grid
-                if (DGVanimals.SelectedRows.Count == 0 && DGVanimals.CurrentRow == null)
-             {
-                 MessageBox.Show("Please select a row in the grid to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 return;
-             }
+            // 1. Check if a row is selected in the grid
+            if (DGVanimals.SelectedRows.Count == 0 && DGVanimals.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a row in the grid to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-             // Get the selected row and its data-bound animal object
-             var selectedRow = DGVanimals.SelectedRows.Count > 0 ? DGVanimals.SelectedRows[0] : DGVanimals.CurrentRow;
+            // Get the selected row and its data-bound animal object
+            var selectedRow = DGVanimals.SelectedRows.Count > 0 ? DGVanimals.SelectedRows[0] : DGVanimals.CurrentRow;
 
-             if (selectedRow == null || selectedRow.DataBoundItem == null)
-             {
-                 MessageBox.Show("Please select a valid animal row.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 return;
-             }
+            if (selectedRow == null || selectedRow.DataBoundItem == null)
+            {
+                MessageBox.Show("Please select a valid animal row.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-             Animal selectedAnimal = selectedRow.DataBoundItem as Animal;
+            Animal selectedAnimal = selectedRow.DataBoundItem as Animal;
 
-             if (selectedAnimal == null)
-             {
-                 MessageBox.Show("Could not retrieve the selected animal data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 return;
-             }
+            if (selectedAnimal == null)
+            {
+                MessageBox.Show("Could not retrieve the selected animal data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-             // 2. Show Yes/No confirmation showing the animal's ID and name
-             string message = $"Delete {selectedAnimal.AnimalID} ({selectedAnimal.Name})? This cannot be undone.";
-             DialogResult result = MessageBox.Show(message, "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            // 2. Show Yes/No confirmation showing the animal's ID and name
+            string message = $"Delete {selectedAnimal.AnimalID} ({selectedAnimal.Name})? This cannot be undone.";
+            DialogResult result = MessageBox.Show(message, "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-             // Choosing No changes nothing
-             if (result == DialogResult.Yes)
-             {
+            // Choosing No changes nothing
+            if (result == DialogResult.Yes)
+            {
                 // Remove from the active list
                 animals.Remove(selectedAnimal);
 
-                 // Save updated list back to animals.txt (adjust property separator if your group uses a different format)
-                 var lines = animals.Select(a => $"{a.AnimalID}|{a.Name}|{a.Species}|{a.Age}|{a.RecoveryScore}|{a.Status}|{a.HousingUnit}");
-                 File.WriteAllLines("animals.txt", lines);
+                // Save updated list back to animals.txt (adjust property separator if your group uses a different format)
+                var lines = animals.Select(a => $"{a.AnimalID}|{a.Name}|{a.Species}|{a.Age}|{a.RecoveryScore}|{a.Status}|{a.HousingUnit}");
+                File.WriteAllLines("animals.txt", lines);
 
                 // Refresh the grid
                 RefreshAnimalGrid();
@@ -329,9 +329,9 @@ namespace AnimalManagementSystem
 
                 // Clear form fields if the deleted animal was currently loaded
                 ClearFormFields();
-                 
-                 MessageBox.Show("Record successfully deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-             }
+
+                MessageBox.Show("Record successfully deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ClearFormFields()
@@ -341,11 +341,15 @@ namespace AnimalManagementSystem
             txtSpecies.Text = "";
             txtAge.Text = "";
             txtScore.Text = "";
+
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             //Enters Add Mode when textboxes are cleared
+            DGVanimals.DataSource = null;
+            DGVanimals.DataSource = animals;
             btnSave.Enabled = false;
             btnAdd.Enabled = true;
             txtID.ReadOnly = false;
@@ -358,6 +362,8 @@ namespace AnimalManagementSystem
             txtAge.Text = "";
             txtScore.Text = "";
 
+
+
         }
 
         private void btnSummary_Click(object sender, EventArgs e)
@@ -365,7 +371,7 @@ namespace AnimalManagementSystem
             try
             {
                 Feature_5 f5 = new Feature_5();
-                lblsummary.Text = f5.GenerateSummary(); 
+                lblsummary.Text = f5.GenerateSummary();
                 MessageBox.Show("Summary generated successfully.");
             }
             catch (Exception ex)
@@ -373,5 +379,7 @@ namespace AnimalManagementSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+     
     }
 }
