@@ -12,28 +12,10 @@ namespace AnimalManagementSystem
     {
         public Feature_3() { }
 
-
-
-        string filepath = "Animals.txt";
+        string filepath = "animals.txt";
        
-        // Adds new data to next line
-        public void AddData(Animals a)
-        {
-            try
-            {
-                string[] newRecord = { a.AnimalID, a.Name, a.Species, a.Age.ToString(), a.RecoveryScore.ToString(), a.Status, a.HousingUnit };
-                string FormatedLine = Environment.NewLine + string.Join("|", newRecord) + Environment.NewLine;
-                File.AppendAllText(filepath, FormatedLine);
-                MessageBox.Show("Data added successfully");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-        }
         //Update the data from the inputs to the text file
-        public void UpdateData(Animals a)
+        public void UpdateData(Animal a)
         {
             try
             {

@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="PresentationLayer\" />
     <Compile Remove="BusinessLayer\**" />
     <Compile Remove="PresentationLayer\**" />
     <EmbeddedResource Remove="BusinessLayer\**" />

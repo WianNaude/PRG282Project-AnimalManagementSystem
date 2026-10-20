@@ -138,4 +138,20 @@
   <metadata name="colHousingUnit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="lblsummary.Text" xml:space="preserve">
+    <value>BAOBAB RIDGE WILDLIFE REHABILITATION CENTRE 
+ANIMAL SUMMARY REPORT 
+Generated: yyyy-MM-dd HH:mm
+ ---------------------------------------- 
+Total animals:            
+Average age (years):      
+Average recovery score:    
+---------------------------------------- 
+Animals per status: 
+Critical:               
+Serious:                
+Stable:                 
+Recovering:             
+Release-Ready:          </value>
+  </data>
 </root>
